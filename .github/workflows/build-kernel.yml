@@ -158,13 +158,12 @@ jobs:
         export KBUILD_BUILD_HOST=Github-Action
         export KBUILD_BUILD_USER=$(echo ${{ github.actor }} | tr A-Z a-z)
         make -j$(nproc --all) CC=clang O=out ARCH=${{ env.ARCH }} ${{ env.CUSTOM_CMDS }} ${{ env.EXTRA_CMDS }} ${{ env.GCC_64 }} ${{ env.GCC_32 }} ${{ env.KERNEL_CONFIG }}
-                if [ ${{ env.ENABLE_CCACHE }} = true ]; then
-            LD=$GITHUB_WORKSPACE/kernel_workspace/aarch64-linux-android-4.9/bin/aarch64-linux-android-ld 
-            make -j$(nproc --all) CC="ccache clang" O=out ARCH=${{ env.ARCH }} ${{ env.CUSTOM_CMDS }} ${{ env.EXTRA_CMDS }} ${{ env.GCC_64 }} ${{ env.GCC_32 }}
+                        if [ ${{ env.ENABLE_CCACHE }} = true ]; then
+            LD=$GITHUB_WORKSPACE/kernel_workspace/aarch64-linux-android-4.9/bin/aarch64-linux-android-ld make -j$(nproc --all) CC="ccache clang" O=out ARCH=${{ env.ARCH }} ${{ env.CUSTOM_CMDS }} ${{ env.EXTRA_CMDS }} ${{ env.GCC_64 }} ${{ env.GCC_32 }}
         else
-            LD=$GITHUB_WORKSPACE/kernel_workspace/aarch64-linux-android-4.9/bin/aarch64-linux-android-ld 
-            make -j$(nproc --all) CC=clang O=out ARCH=${{ env.ARCH }} ${{ env.CUSTOM_CMDS }} ${{ env.EXTRA_CMDS }} ${{ env.GCC_64 }} ${{ env.GCC_32 }}
+            LD=$GITHUB_WORKSPACE/kernel_workspace/aarch64-linux-android-4.9/bin/aarch64-linux-android-ld make -j$(nproc --all) CC=clang O=out ARCH=${{ env.ARCH }} ${{ env.CUSTOM_CMDS }} ${{ env.EXTRA_CMDS }} ${{ env.GCC_64 }} ${{ env.GCC_32 }}
         fi
+
 
 
 
